@@ -9,7 +9,6 @@
 #include <ctype.h>
 
 char *bring_dir(char *path);
-int dir_check(char *dir_name);
-int main(int argc, char *argv[]);
+int main(void);
 
 #endif
