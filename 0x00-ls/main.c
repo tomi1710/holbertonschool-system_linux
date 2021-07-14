@@ -9,7 +9,7 @@
 */
 int main(int argc, char *argv[])
 {
-	int i, numero = 0, argx = 0, pos = 0;
+	int i, numero = 0, argx = 0, pos = 0, primera = 0;
 	char *array = NULL, *options = NULL;
 
 	options = option_finder(argc, argv);
@@ -53,11 +53,14 @@ int main(int argc, char *argv[])
 				{
 					if (chequear_opciones(options) == 1)
 					{
+						if (primera != 0)
+						{
+							printf("\n");
+						}
+						primera++;
 						printf("%s:\n", argv[i]);
 						array = bring_dir(argv[i]);
 						print_uno(array);
-						if (i != argc - 1 && argv[argc - 1][0] != '-')
-							printf("\n");
 						free(array);
 					}
 					else
