@@ -43,10 +43,11 @@ int main(int argc, char *argv[])
 }
 
 /**
-* print_dir - fetch and prints a certain directorys content
+* bring_dir - fetch and prints a certain directorys content
 * @path: pwd to directory
+* Return: x
 */
-char* bring_dir(char *path)
+char *bring_dir(char *path)
 {
 	struct dirent *read;
 	DIR *dir;
@@ -63,7 +64,7 @@ char* bring_dir(char *path)
 		}
 	}
 
-	array2 = malloc(count + 1);
+	array2 = malloc(count);
 	closedir(dir);
 
 	count = 0;
@@ -78,7 +79,7 @@ char* bring_dir(char *path)
 			count++;
 		}
 	}
-	array2[count] = '\0';
+	array2[count - 1] = '\0';
 	closedir(dir);
 
 	return (array2);
