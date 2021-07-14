@@ -17,9 +17,10 @@ int main(int argc, char *argv[])
 	for (i = 0; i < argc; i++)
 	{
 		if (argv[i][0] != '-')
+		{
 			argx = argx + 1;
-			if (pos == 0)
-				pos = i;
+			pos = i;
+		}
 	}	
 
 	if (argx == 1 && options == NULL)
