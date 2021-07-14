@@ -1,99 +1,73 @@
 #include "holberton.h"
 
+
 /**
- * main - main function
- * @argc: number of arguments
- * @argv: array of arguments
- * Return: returns 0 when run correctly
- */
+* main - main function
+* @argc: aaa
+* @argv: aaa
+* Return: returns 0 when run correctly
+*/
 int main(int argc, char *argv[])
 {
-	int i = 0;
-	char **array = NULL;
+	int i;
 
-	if (argc != 1)
-	{
-		argv = hsort(argv);
-		for (i = 1; i < argc; i++)
-		{
-			array = bring_array(argv[i]);
-			if (argv[i][strlen(argv[i]) - 1] == '/')
-			{
-				argv[i][strlen(argv[i]) - 1] = '\0';
-			}
-			if (argc > 2)
-				if (i > 1)
-					printf("\n");
-				printf("%s/:\n", argv[i]);
-			array = hsort(array);
-			printarr(array);
-			freearr(array);
-		}
-	}
+	if (argc == 1)
+		print_dir(".");
 	else
 	{
-		array = bring_array(".");
-		array = hsort(array);
-		printarr(array);
-		freearr(array);
+		for (i = 1; i < argc; i++)
+		{
+			if (dir_check(argv[i]) == 0)
+			{
+				fprintf(stderr, "./hls: cannot access %s: No such
+								 file or directory\n", argv[i]);
+				exit(2);
+			}
+			else
+			{
+				printf("%s:\n", argv[i]);
+				print_dir(argv[i]);
+				if (i != argc - 1)
+					printf("\n");
+			}
+		}
 	}
-
 	return (0);
 }
 
 /**
- * bring_array - puts all the things that are in a specific directory
- * into an array
- * @path: pwd to a specific array
- * Return: returns the array
- */
-char **bring_array(char *path)
+* print_dir - fetch and prints a certain directorys content
+* @path: pwd to directory
+*/
+void print_dir(char *path)
 {
+	struct dirent *read;
 	DIR *dir;
-	unsigned int size = 0;
-	int i = 0;
-	char **array = NULL;
 
 	dir = opendir(path);
 	while ((read = readdir(dir)) != NULL)
 		if (read->d_name[0] != '.')
-			size++;
-
-	array = malloc(size * sizeof(char *));
-
-	if (array == NULL)
-		exit(98);
-
-	closedir(dir);
-	
-	dir = opendir(path);
-	while ((read = readdir(dir)) != NULL)
-		if (read->d_name[0] != '.')
-		{
-			array[i] = read->d_name;
-			i++;
-		}
-	array[i] = '\0';
-
+			printf("%s ", read->d_name);
+	printf("\n");
 	closedir(dir);
 
-	return (array);
 }
 
 /**
- * printarr - prints an array
- * @array: array to be printed
- */
-void printarr(char **array)
+* dir_check - function to check if directory exists.
+* @dir_name: command or file name.
+*
+* Return: 1 on succes, 0 on failure.
+*/
+int dir_check(char *dir_name)
 {
-	int i = 0;
+	DIR *dir = NULL;
 
-	for (i = 0; array[i] != '\0'; i++)
-		printf("%s  ", array[i]);
-	printf("\n");
-}
-
-void freearr(char **array)
-{
-	free(array);
+	dir = opendir(dir_name);
+	if (dir)
+	{
+		closedir(dir);
+		return (1);
+	}
+	return (0);
 }

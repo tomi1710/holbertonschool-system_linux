@@ -8,12 +8,8 @@
 #include <errno.h>
 #include <ctype.h>
 
-char **bring_array(char *path);
-char **hsort(char **array);
-int _strlen(char *s);
-void printarr(char **array);
-int strcicmp(char *a, char *b);
-void freearr(char **array);
+void print_dir(char *path);
+int dir_check(char *dir_name);
+int main(int argc, char *argv[]);
 
-struct dirent *read;
 #endif
