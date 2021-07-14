@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 						printf("%s:\n", argv[i]);
 						array = bring_dir(argv[i]);
 						print_uno(array);
-						if (i != argc - 1)
+						if (i != argc - 1 && argv[argc - 1][0] != '-')
 							printf("\n");
 					}
 					else
