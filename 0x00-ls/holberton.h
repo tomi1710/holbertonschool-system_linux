@@ -12,5 +12,6 @@ char *bring_dir(char *path);
 char *option_finder(int argc, char *argv[]);
 int _strlen(char *s);
 int dir_check(char *dir_name);
-
+void print_uno(char *array);
+int chequear_opciones(char *options);
 #endif

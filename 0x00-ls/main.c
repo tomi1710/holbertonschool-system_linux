@@ -18,6 +18,11 @@ int main(int argc, char *argv[])
 		array = bring_dir(".");
 		printf("%s\n", array);
 	}
+	else if (argc == 2 && argv[1][0] == '-' && argv[1][1] == '1')
+	{
+		array = bring_dir(".");
+		print_uno(array);
+	}
 	else
 	{
 		for (i = 1; i < argc; i++)
@@ -31,12 +36,23 @@ int main(int argc, char *argv[])
 				}
 				else
 				{
-					array = bring_dir(argv[i]);
-					printf("%s:\n", argv[i]);
-					printf("%s", array);
-					printf("\n");
-					if (i != argc - 1)
+					if (chequear_opciones(options) == 1)
+					{
+						printf("%s:\n", argv[i]);
+						array = bring_dir(argv[i]);
+						print_uno(array);
+						if (i != argc - 1)
+							printf("\n");
+					}
+					else
+					{
+						array = bring_dir(argv[i]);
+						printf("%s:\n", argv[i]);
+						printf("%s", array);
 						printf("\n");
+						if (i != argc - 1)
+							printf("\n");
+					}
 				}
 			}
 		}
@@ -48,7 +64,31 @@ int main(int argc, char *argv[])
 	return (numero);
 }
 
+void print_uno(char *array)
+{
+	int i;
 
+	for (i = 0; array[i] != '\0'; i++)
+	{
+		if (array[i] == ' ')
+			array[i] = '\n';
+	}
+	printf("%s\n", array);
+}
+
+int chequear_opciones(char *options)
+{
+	int i;
+
+	for (i = 0; options[i] != '\0'; i++)
+	{
+		if (options[i] == '1')
+		{
+			return (1);
+		}
+	}
+	return (0);
+}
 /**
 * option_finder - main function
 * @argc: asda
