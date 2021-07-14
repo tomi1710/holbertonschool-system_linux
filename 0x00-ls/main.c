@@ -17,11 +17,13 @@ int main(int argc, char *argv[])
 	{
 		array = bring_dir(".");
 		printf("%s\n", array);
+		free(array);
 	}
 	else if (argc == 2 && argv[1][0] == '-' && argv[1][1] == '1')
 	{
 		array = bring_dir(".");
 		print_uno(array);
+		free(array);
 	}
 	else
 	{
@@ -43,6 +45,7 @@ int main(int argc, char *argv[])
 						print_uno(array);
 						if (i != argc - 1 && argv[argc - 1][0] != '-')
 							printf("\n");
+						free(array);
 					}
 					else
 					{
@@ -52,13 +55,13 @@ int main(int argc, char *argv[])
 						printf("\n");
 						if (i != argc - 1)
 							printf("\n");
+						free(array);
 					}
 				}
 			}
 		}
 	}
 
-	free(array);
 	if (options)
 		free(options);
 	return (numero);
