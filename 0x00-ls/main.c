@@ -9,7 +9,7 @@
 */
 int main(int argc, char *argv[])
 {
-	int i;
+	int i, numero = 0;
 	char *array = NULL, *options = NULL;
 
 	options = option_finder(argc, argv);
@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
 				if (dir_check(argv[i]) == 0)
 				{
 					fprintf(stderr, MACRO, argv[i]);
+					numero = 2;
 				}
 				else
 				{
@@ -44,7 +45,7 @@ int main(int argc, char *argv[])
 	free(array);
 	if (options)
 		free(options);
-	return (0);
+	return (numero);
 }
 
 
