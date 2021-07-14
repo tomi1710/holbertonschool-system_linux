@@ -3,8 +3,6 @@
 
 /**
 * main - main function
-* @argc: aaa
-* @argv: aaa
 * Return: returns 0 when run correctly
 */
 int main(void)
