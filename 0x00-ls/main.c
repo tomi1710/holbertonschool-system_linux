@@ -1,5 +1,5 @@
 #include "holberton.h"
-
+#define MACRO "./hls: cannot access %s: No such file or directory\n"
 
 /**
 * main - main function
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 			{
 				if (dir_check(argv[i]) == 0)
 				{
-					printf("agregar errores\n\n");
+					fprintf(stderr, MACRO, argv[i]);
 				}
 				else
 				{
