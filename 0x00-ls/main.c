@@ -41,8 +41,6 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	printf("-----%s\n", options);
-
 	free(array);
 	if (options)
 		free(options);
