@@ -3,8 +3,8 @@
 
 /**
 * main - main function
-* @argc:
-* @argv:
+* @argc: asda
+* @argv: asda
 * Return: returns 0 when run correctly
 */
 int main(int argc, char *argv[])
@@ -47,6 +47,13 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
+
+/**
+* option_finder - main function
+* @argc: asda
+* @argv: asda
+* Return: returns 0 when run correctly
+*/
 char *option_finder(int argc, char *argv[])
 {
 	int i, a, b = 0, count = 0;
