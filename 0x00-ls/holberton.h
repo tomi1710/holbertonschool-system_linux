@@ -8,7 +8,7 @@
 #include <errno.h>
 #include <ctype.h>
 
-void print_dir(char *path);
+char* bring_dir(char *path);
 int dir_check(char *dir_name);
 int main(int argc, char *argv[]);
 

@@ -10,9 +10,14 @@
 int main(int argc, char *argv[])
 {
 	int i;
+	char *array = NULL;
 
 	if (argc == 1)
-		print_dir(".");
+	{
+		array = bring_dir(".");
+		printf("%s|\n", array);
+		free(array);
+	}
 	else
 	{
 		for (i = 1; i < argc; i++)
@@ -26,9 +31,11 @@ int main(int argc, char *argv[])
 			else
 			{
 				printf("%s:\n", argv[i]);
-				print_dir(argv[i]);
+				array = bring_dir(argv[i]);
+				printf("%s|\n", array);
 				if (i != argc - 1)
 					printf("\n");
+				free(array);
 			}
 		}
 	}
@@ -39,18 +46,37 @@ int main(int argc, char *argv[])
 * print_dir - fetch and prints a certain directorys content
 * @path: pwd to directory
 */
-void print_dir(char *path)
+char* bring_dir(char *path)
 {
 	struct dirent *read;
 	DIR *dir;
+	int count = 0, i;
+	char *array2 = NULL;
 
 	dir = opendir(path);
 	while ((read = readdir(dir)) != NULL)
-		if (read->d_name[0] != '.')
-			printf("%s ", read->d_name);
-	printf("\n");
+	{
+		count = count + strlen(read->d_name);
+		count++;
+	}
+
+	printf("%i\n", count);
+	array2 = malloc(count + 1);
 	closedir(dir);
 
+	count = 0;
+	dir = opendir(path);
+	while ((read = readdir(dir)) != NULL)
+	{
+		for (i = 0; read->d_name[i] != '\0'; i++, count++)
+			array2[count] = read->d_name[i];
+		array2[count] = ' ';
+		count++;
+	}
+	array2[count] = '\0';
+	closedir(dir);
+
+	return (array2);
 }
 
 /**
