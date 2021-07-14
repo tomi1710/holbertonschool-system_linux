@@ -9,19 +9,31 @@
 */
 int main(int argc, char *argv[])
 {
-	int i, numero = 0;
+	int i, numero = 0, argx = 0, pos = 0;
 	char *array = NULL, *options = NULL;
 
 	options = option_finder(argc, argv);
-	if (argc == 1)
+
+	for (i = 0; i < argc; i++)
+	{
+		if (argv[i][0] != '-')
+			argx = argx + 1;
+			if (pos == 0)
+				pos = i;
+	}	
+
+	if (argx == 1 && options == NULL)
 	{
 		array = bring_dir(".");
 		printf("%s\n", array);
 		free(array);
 	}
-	else if (argc == 2 && argv[1][0] == '-' && argv[1][1] == '1')
+	else if (argx < 3 && chequear_opciones(options) == 1)
 	{
-		array = bring_dir(".");
+		if (argx == 1)
+			array = bring_dir(".");
+		else
+			array = bring_dir(argv[pos]);
 		print_uno(array);
 		free(array);
 	}
@@ -40,8 +52,7 @@ int main(int argc, char *argv[])
 				{
 					if (chequear_opciones(options) == 1)
 					{
-						if (argc != 3)
-							printf("%s:\n", argv[i]);
+						printf("%s:\n", argv[i]);
 						array = bring_dir(argv[i]);
 						print_uno(array);
 						if (i != argc - 1 && argv[argc - 1][0] != '-')
