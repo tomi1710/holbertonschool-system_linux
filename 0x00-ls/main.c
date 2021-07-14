@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 				if (dir_check(argv[i]) == 0)
 				{
 					fprintf(stderr, MACRO, argv[i]);
-					numero = 2;
+					exit(2);
 				}
 				else
 				{
