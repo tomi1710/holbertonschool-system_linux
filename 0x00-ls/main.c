@@ -33,7 +33,7 @@ char *bring_dir(char *path)
 	{
 		if (read->d_name[0] != '.')
 		{
-			count = count + strlen(read->d_name);
+			count = count + _strlen(read->d_name);
 			count++;
 		}
 	}
@@ -57,4 +57,19 @@ char *bring_dir(char *path)
 	closedir(dir);
 
 	return (array2);
+}
+
+/**
+ * _strlen - fdfdf
+ * @s: sksksks
+ * Return: sassassass
+ */
+int _strlen(char *s)
+{
+	int i;
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+	}
+	return (i);
 }

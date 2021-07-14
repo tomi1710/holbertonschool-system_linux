@@ -10,5 +10,6 @@
 
 char *bring_dir(char *path);
 int main(void);
+int _strlen(char *s);
 
 #endif
