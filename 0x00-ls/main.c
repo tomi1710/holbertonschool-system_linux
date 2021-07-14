@@ -60,7 +60,6 @@ char* bring_dir(char *path)
 		count++;
 	}
 
-	printf("%i\n", count);
 	array2 = malloc(count + 1);
 	closedir(dir);
 
