@@ -40,7 +40,8 @@ int main(int argc, char *argv[])
 				{
 					if (chequear_opciones(options) == 1)
 					{
-						printf("%s:\n", argv[i]);
+						if (argc != 3)
+							printf("%s:\n", argv[i]);
 						array = bring_dir(argv[i]);
 						print_uno(array);
 						if (i != argc - 1 && argv[argc - 1][0] != '-')
