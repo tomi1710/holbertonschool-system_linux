@@ -3,17 +3,86 @@
 
 /**
 * main - main function
+* @argc:
+* @argv:
 * Return: returns 0 when run correctly
 */
-int main(void)
+int main(int argc, char *argv[])
 {
-	char *array = NULL;
+	int i;
+	char *array = NULL, *options = NULL;
 
-	array = bring_dir(".");
-	printf("%s\n", array);
+	options = option_finder(argc, argv);
+	if (argc == 1)
+	{
+		array = bring_dir(".");
+		printf("%s\n", array);
+	}
+	else
+	{
+		for (i = 1; i < argc; i++)
+		{
+			if (argv[i][0] != '-')
+			{
+				if (dir_check(argv[i]) == 0)
+				{
+					printf("agregar errores\n\n");
+				}
+				else
+				{
+					array = bring_dir(argv[i]);
+					printf("%s:\n", argv[i]);
+					printf("%s", array);
+					printf("\n");
+					if (i != argc - 1)
+						printf("\n");
+				}
+			}
+		}
+	}
+
+	printf("-----%s\n", options);
+
 	free(array);
-
+	if (options)
+		free(options);
 	return (0);
+}
+
+char *option_finder(int argc, char *argv[])
+{
+	int i, a, b = 0, count = 0;
+	char *options = NULL;
+
+	for (i = 0; i < argc; i++)
+	{
+		if (argv[i][0] == '-')
+		{
+			for (a = 1; argv[i][a] != '\0'; a++)
+			{
+				count++;
+			}
+		}
+	}
+
+	if (count != 0)
+	{
+		options = malloc(count + 1);
+		for (i = 0; i < argc; i++)
+		{
+			if (argv[i][0] == '-')
+			{
+				for (a = 1; argv[i][a] != '\0'; a++)
+				{
+					options[b] = argv[i][a];
+					b++;
+				}
+			}
+		}
+		options[b] = '\0';
+	}
+
+	return (options);
 }
 
 /**
@@ -39,6 +108,7 @@ char *bring_dir(char *path)
 	}
 
 	array2 = malloc(count);
+
 	closedir(dir);
 
 	count = 0;
@@ -72,4 +142,23 @@ int _strlen(char *s)
 	{
 	}
 	return (i);
+}
+
+/**
+* dir_check - function to check if directory exists.
+* @dir_name: command or file name.
+*
+* Return: 1 on succes, 0 on failure.
+*/
+int dir_check(char *dir_name)
+{
+	DIR *dir = NULL;
+
+	dir = opendir(dir_name);
+	if (dir)
+	{
+		closedir(dir);
+		return (1);
+	}
+	return (0);
 }
