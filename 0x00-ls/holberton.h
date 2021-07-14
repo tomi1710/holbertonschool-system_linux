@@ -13,6 +13,7 @@ char **hsort(char **array);
 int _strlen(char *s);
 void printarr(char **array);
 int strcicmp(char *a, char *b);
+void freearr(char **array);
 
 struct dirent *read;
 #endif

@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
 				printf("%s/:\n", argv[i]);
 			array = hsort(array);
 			printarr(array);
+			freearr(array);
 		}
 	}
 	else
@@ -34,6 +35,7 @@ int main(int argc, char *argv[])
 		array = bring_array(".");
 		array = hsort(array);
 		printarr(array);
+		freearr(array);
 	}
 
 	return (0);
@@ -57,10 +59,13 @@ char **bring_array(char *path)
 		if (read->d_name[0] != '.')
 			size++;
 
-	array = malloc(size * sizeof(char *) + 1);
+	array = malloc(size * sizeof(char *));
+
 	if (array == NULL)
 		exit(98);
 
+	closedir(dir);
+	
 	dir = opendir(path);
 	while ((read = readdir(dir)) != NULL)
 		if (read->d_name[0] != '.')
@@ -86,4 +91,9 @@ void printarr(char **array)
 	for (i = 0; array[i] != '\0'; i++)
 		printf("%s  ", array[i]);
 	printf("\n");
+}
+
+void freearr(char **array)
+{
+	free(array);
 }
