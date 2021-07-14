@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	if (argc == 1)
 	{
 		array = bring_dir(".");
-		printf("%s|\n", array);
+		printf("%s\n", array);
 		free(array);
 	}
 	else
@@ -56,8 +56,11 @@ char* bring_dir(char *path)
 	dir = opendir(path);
 	while ((read = readdir(dir)) != NULL)
 	{
-		count = count + strlen(read->d_name);
-		count++;
+		if (read->d_name[0] != '.')
+		{
+			count = count + strlen(read->d_name);
+			count++;
+		}
 	}
 
 	array2 = malloc(count + 1);
@@ -67,10 +70,13 @@ char* bring_dir(char *path)
 	dir = opendir(path);
 	while ((read = readdir(dir)) != NULL)
 	{
-		for (i = 0; read->d_name[i] != '\0'; i++, count++)
-			array2[count] = read->d_name[i];
-		array2[count] = ' ';
-		count++;
+		if (read->d_name[0] != '.')
+		{
+			for (i = 0; read->d_name[i] != '\0'; i++, count++)
+				array2[count] = read->d_name[i];
+			array2[count] = ' ';
+			count++;
+		}
 	}
 	array2[count] = '\0';
 	closedir(dir);
