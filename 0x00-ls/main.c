@@ -88,50 +88,43 @@ int salto, int dirs_len, char *array, int retoptions, char *options)
 			bandera_numero = numero;
 		if (numero == 0)
 		{
-			morejaja(salto, i, file_count2, dirs_len,
-			dirs, retoptions, array);
+			if (salto != 0)
+			{
+				printf("\n");
+			}
+			else if (i == file_count2)
+			{
+				printf("\n");
+			}
+			salto++;
+			if (dirs_len != 1)
+				printf("%s:\n", dirs[i]);
+			if (retoptions == 1)
+			{
+				array = bring_dir(dirs[i]);
+				print_uno(array);
+			}
+			else if (retoptions == 2)
+			{
+				array = bring_dir_a(dirs[i]);
+				printf("%s\n", array);
+			}
+			else if (retoptions == 3)
+			{
+				array = bring_dir_A(dirs[i]);
+				printf("%s\n", array);
+			}
+			else
+			{
+				array = bring_dir(dirs[i]);
+				printf("%s\n", array);
+			}
+			salto++;
+			free(array);
 		}
 	}
 	hfree(dirs, options);
 	return (bandera_numero);
-}
-
-void morejaja(int salto, int i, int file_count2, int dirs_len,
-char **dirs, int retoptions, char *array)
-{
-	if (salto != 0)
-	{
-		printf("\n");
-	}
-	else if (i == file_count2)
-	{
-		printf("\n");
-	}
-	salto++;
-	if (dirs_len != 1)
-		printf("%s:\n", dirs[i]);
-	if (retoptions == 1)
-	{
-		array = bring_dir(dirs[i]);
-		print_uno(array);
-	}
-	else if (retoptions == 2)
-	{
-		array = bring_dir_a(dirs[i]);
-		printf("%s\n", array);
-	}
-	else if (retoptions == 3)
-	{
-		array = bring_dir_A(dirs[i]);
-		printf("%s\n", array);
-	}
-	else
-	{
-		array = bring_dir(dirs[i]);
-		printf("%s\n", array);
-	}
-	salto++;
-	free(array);
 }
 
 /**
