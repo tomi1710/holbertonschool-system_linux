@@ -74,8 +74,10 @@ int salto, int dirs_len, char *array, int retoptions, char *options)
 	for (i = 0; dirs[i] != '\0'; i++)
 	{
 		numero = dir_check2(dirs[i]);
-		if (numero != 0)
+		if (numero == 2)
 			bandera_numero = numero;
+		if (numero == -1)
+			printf("\n");
 		if (numero == 0)
 		{
 			if (salto != 0)

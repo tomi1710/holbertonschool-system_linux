@@ -3,6 +3,7 @@
 /**
 * dir_check - function to check if directory exists.
 * @dir_name: command or file name.
+* @functionn: command or file name.
 *
 * Return: 1 on succes, 0 on failure.
 */
@@ -27,6 +28,10 @@ int dir_check(char *dir_name, char *functionn)
 			, functionn, dir_name);
 			closedir(dir);
 			return (2);
+		}
+		else
+		{
+			printf("%s\n", dir_name);
 		}
 	}
 	closedir(dir);
@@ -57,6 +62,8 @@ int dir_check2(char *dir_name)
 			closedir(dir);
 			return (2);
 		}
+		else
+			return (-1);
 	}
 	closedir(dir);
 	return (0);
