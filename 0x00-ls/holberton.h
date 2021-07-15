@@ -9,6 +9,7 @@
 #include <ctype.h>
 
 char *bring_dir(char *path);
+char *bring_dir_a(char *path);
 char *option_finder(int argc, char *argv[]);
 int _strlen(char *s);
 int dir_check(char *dir_name);
