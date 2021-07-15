@@ -71,19 +71,14 @@ void handle_options(int retoptions, char *array)
 int else_main(int numero, char **dirs, int i, int bandera_numero,
 int salto, int dirs_len, char *array, int retoptions, char *options)
 {
-	int count_check = 0;
-
 	for (i = 0; dirs[i] != '\0'; i++)
 	{
 		numero = dir_check2(dirs[i]);
 		if (numero == 2)
 			bandera_numero = numero;
-		if (numero == -1)
-			count_check++;
 		if (numero == 0)
 		{
-			if (salto != 0 || count_check == 2)
-				printf("\n");
+			printf("\n");
 			if (dirs_len != 1)
 				printf("%s:\n", dirs[i]);
 			if (retoptions == 1)
