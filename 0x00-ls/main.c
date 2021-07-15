@@ -71,14 +71,32 @@ void handle_options(int retoptions, char *array)
 int else_main(int numero, char **dirs, int i, int bandera_numero,
 int salto, int dirs_len, char *array, int retoptions, char *options)
 {
+	int file_count1 = 0, file_count2 = 0;
+
 	for (i = 0; dirs[i] != '\0'; i++)
 	{
-		printf("\n");
+		file_count1 = dir_check2(dirs[i]);
+		if (file_count1 == -1)
+			file_count2++;
+	}
+	if (file_count2 == 0)
+		file_count2 = -1;
+	for (i = 0; dirs[i] != '\0'; i++)
+	{
 		numero = dir_check2(dirs[i]);
 		if (numero == 2)
 			bandera_numero = numero;
 		if (numero == 0)
 		{
+			if (salto != 0)
+			{
+				printf("\n");
+			}
+			else if (i == file_count2)
+			{
+				printf("\n");
+			}
+			salto++;
 			if (dirs_len != 1)
 				printf("%s:\n", dirs[i]);
 			if (retoptions == 1)
@@ -108,6 +126,7 @@ int salto, int dirs_len, char *array, int retoptions, char *options)
 	hfree(dirs, options);
 	return (bandera_numero);
 }
+
 /**
 * dir_finder - returns an array with dirs
 * @argc: asdads

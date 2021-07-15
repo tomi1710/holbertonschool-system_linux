@@ -63,7 +63,9 @@ int dir_check2(char *dir_name)
 			return (2);
 		}
 		else
+		{
 			return (-1);
+		}
 	}
 	closedir(dir);
 	return (0);
