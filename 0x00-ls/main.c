@@ -191,7 +191,7 @@ int dir_check(char *dir_name)
 		}
 		else if (errno == 13)
 		{
-			fprintf(stderr, "Permission error");
+			fprintf(stderr, "./hls: cannot open directory '%s': Permission denied");
 			closedir(dir);
 			return (2);
 		}
