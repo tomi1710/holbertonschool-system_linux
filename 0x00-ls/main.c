@@ -79,7 +79,10 @@ int salto, int dirs_len, char *array, int retoptions, char *options)
 		if (numero == 0)
 		{
 			if (salto != 0)
-				printf("\n");
+			{
+
+			}
+			printf("\n");
 			if (dirs_len != 1)
 				printf("%s:\n", dirs[i]);
 			if (retoptions == 1)
