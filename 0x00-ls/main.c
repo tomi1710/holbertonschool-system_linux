@@ -1,6 +1,6 @@
 #include "holberton.h"
 #define MACRO "./hls: cannot access %s: No such file or directory\n"
-
+int dir_check2(char *dir_name);
 /**
 * main - main function
 * @argc: asda
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	{
 		for (i = 0; dirs[i] != '\0'; i++)
 		{
-			numero = dir_check(dirs[i]);
+			numero = dir_check2(dirs[i]);
 			if (numero != 0)
 				bandera_numero = numero; 
 			if (numero == 0)
@@ -77,6 +77,7 @@ char **dir_finder(int argc, char *argv[])
 		if (argv[i][0] != '-' && argv[i][0] != '.' && argv[i][1] != '/')
 		{
 			count1++;
+			dir_check(argv[i]);
 		}
 	if (count1 != 0)
 	{
@@ -194,6 +195,28 @@ int dir_check(char *dir_name)
 		{
 			fprintf(stderr, "./hls: cannot open directory %s: Permission denied\n"
 			, dir_name);
+			closedir(dir);
+			return (2);
+		}
+	}
+	closedir(dir);
+	return (0);
+}
+int dir_check2(char *dir_name)
+{
+	DIR *dir = NULL;
+
+	dir = opendir(dir_name);
+
+	if (dir == NULL)
+	{
+		if (errno == 2)
+		{
+			closedir(dir);
+			return (2);
+		}
+		else if (errno == 13)
+		{
 			closedir(dir);
 			return (2);
 		}
