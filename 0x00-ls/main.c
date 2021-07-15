@@ -53,6 +53,8 @@ int main(int argc, char *argv[])
 					salto++;
 					free(array);
 				}
+				else
+					numero = 2;
 			}
 	}
 
