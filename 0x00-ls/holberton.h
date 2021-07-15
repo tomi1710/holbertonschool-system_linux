@@ -23,8 +23,4 @@ int else_main(int numero, char **dirs, int i, int bandera_numero,
 int salto, int dirs_len, char *array, int retoptions, char *options);
 void handle_options(int retoptions, char *array);
 char *second_part_bring_dir(char *path, char *array2);
-int aux(char **dirs, int file_count1, int file_count2);
-void aux_dos(char *array, char *dirs);
-void aux_tres(char *array, char *dirs);
-void aux_cuatro(char *array, char *dirs);
 #endif

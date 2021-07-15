@@ -67,16 +67,11 @@ void handle_options(int retoptions, char *array)
 	}
 	free(array);
 }
-/**
-* aux - returns an array with dirs
-* @dirs: asdads
-* @file_count1: asdadsad
-* @file_count2: sadfs
-* Return: returns array of dirs
-*/
-int aux(char **dirs, int file_count1, int file_count2)
+
+int else_main(int numero, char **dirs, int i, int bandera_numero,
+int salto, int dirs_len, char *array, int retoptions, char *options)
 {
-	int i;
+	int file_count1 = 0, file_count2 = 0;
 
 	for (i = 0; dirs[i] != '\0'; i++)
 	{
@@ -86,16 +81,6 @@ int aux(char **dirs, int file_count1, int file_count2)
 	}
 	if (file_count2 == 0)
 		file_count2 = -1;
-
-	return (file_count2);
-}
-
-int else_main(int numero, char **dirs, int i, int bandera_numero,
-int salto, int dirs_len, char *array, int retoptions, char *options)
-{
-	int file_count1 = 0, file_count2 = 0;
-
-	file_count2 = aux(dirs, file_count1, file_count2);
 	for (i = 0; dirs[i] != '\0'; i++)
 	{
 		numero = dir_check2(dirs[i]);
@@ -104,19 +89,25 @@ int salto, int dirs_len, char *array, int retoptions, char *options)
 		if (numero == 0)
 		{
 			if (salto != 0)
+			{
 				printf("\n");
+			}
 			else if (i == file_count2)
+			{
 				printf("\n");
+			}
 			salto++;
 			if (dirs_len != 1)
 				printf("%s:\n", dirs[i]);
 			if (retoptions == 1)
 			{
-				aux_dos(array, dirs[i]);
+				array = bring_dir(dirs[i]);
+				print_uno(array);
 			}
 			else if (retoptions == 2)
 			{
-				aux_tres(array, dirs[i]);
+				array = bring_dir_a(dirs[i]);
+				printf("%s\n", array);
 			}
 			else if (retoptions == 3)
 			{
@@ -125,7 +116,8 @@ int salto, int dirs_len, char *array, int retoptions, char *options)
 			}
 			else
 			{
-				aux_cuatro(array, dirs[i]);
+				array = bring_dir(dirs[i]);
+				printf("%s\n", array);
 			}
 			salto++;
 			free(array);
