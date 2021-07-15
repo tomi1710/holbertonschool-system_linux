@@ -103,7 +103,7 @@ char **dir_finder(int argc, char *argv[])
 	char **dirs = NULL;
 
 	for (i = 0; i < argc; i++)
-		if (argv[i][0] != '-' && argv[i][0] != '.' && argv[i][1] != '/')
+		if (argv[i][0] != '-' && argv[i][1] != '/')
 		{
 			count1++;
 			dir_check(argv[i]);
@@ -114,7 +114,7 @@ char **dir_finder(int argc, char *argv[])
 
 		for (i = 0; i < argc; i++)
 		{
-			if (argv[i][0] != '-' && argv[i][0] != '.' && argv[i][1] != '/')
+			if (argv[i][0] != '-' && argv[i][1] != '/')
 			{
 				for (a = 1; argv[i][a] != '\0'; a++)
 					count2++;
@@ -125,7 +125,7 @@ char **dir_finder(int argc, char *argv[])
 		}
 		for (i = 0; i < argc; i++)
 		{
-			if (argv[i][0] != '-' && argv[i][0] != '.' && argv[i][1] != '/')
+			if (argv[i][0] != '-' && argv[i][1] != '/')
 			{
 				for (a = 0; argv[i][a] != '\0'; a++)
 				{
