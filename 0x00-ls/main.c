@@ -54,18 +54,10 @@ int main(int argc, char *argv[])
 					free(array);
 				}
 				else
-					numero = 2;
+					numero = dir_check(dirs[i]);
 			}
 	}
-
-	if (dirs)
-		for (i = 0; dirs[i] != '\0'; i++)
-		{
-			free(dirs[i]);
-		}
-		free(dirs);
-	if (options)
-		free(options);
+	hfree(dirs, options);
 	return (numero);
 }
 
@@ -114,7 +106,6 @@ char **dir_finder(int argc, char *argv[])
 		}
 		dirs[b] = '\0';
 	}
-
 	return (dirs);
 }
 
@@ -192,12 +183,18 @@ int dir_check(char *dir_name)
 	if (dir == NULL)
 	{
 		if (errno == 2)
+		{
 			fprintf(stderr, "./hls: cannot access '%s': No such file or directory\n"
 			, dir_name);
+			closedir(dir);
+			return (2);
+		}
 		else if (errno == 13)
+		{
 			fprintf(stderr, "Permission error");
-		closedir(dir);
-		return (2);
+			closedir(dir);
+			return (13);
+		}
 	}
 	closedir(dir);
 	return (0);
