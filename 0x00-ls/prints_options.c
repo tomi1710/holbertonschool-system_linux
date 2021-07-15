@@ -30,3 +30,37 @@ int _strlen(char *s)
 	}
 	return (i);
 }
+
+/**
+* aux_dos - returns an array with dirs
+* @array: asdads
+* @dirs: asdadsad
+* Return: returns array of dirs
+*/
+void aux_dos(char *array, char *dirs)
+{
+	array = bring_dir(dirs);
+	print_uno(array);
+}
+/**
+* aux_tres - returns an array with dirs
+* @array: asdads
+* @dirs: asdadsad
+* Return: returns array of dirs
+*/
+void aux_tres(char *array, char *dirs)
+{
+	array = bring_dir_a(dirs);
+	printf("%s\n", array);
+}
+/**
+* aux_cuatro - returns an array with dirs
+* @array: asdads
+* @dirs: asdadsad
+* Return: returns array of dirs
+*/
+void aux_cuatro(char *array, char *dirs)
+{
+	array = bring_dir(dirs);
+	printf("%s\n", array);
+}
