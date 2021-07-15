@@ -193,7 +193,7 @@ int dir_check(char *dir_name)
 		{
 			fprintf(stderr, "Permission error");
 			closedir(dir);
-			return (13);
+			return (2);
 		}
 	}
 	closedir(dir);
