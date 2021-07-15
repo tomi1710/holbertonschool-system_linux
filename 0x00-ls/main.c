@@ -17,10 +17,12 @@ int main(int argc, char *argv[])
 	dirs = dir_finder(argc, argv);
 
 	if (dirs)
+	{
 		for (i = 0; dirs[i] != '\0'; i++)
 		{
 			dirs_len++;
 		}
+	}
 
 	if (argc == 1 && options == NULL)
 	{
@@ -38,6 +40,11 @@ int main(int argc, char *argv[])
 		if (retoptions == 2)
 		{
 			array = bring_dir_a(".");
+			printf("%s\n", array);
+		}
+		if (retoptions == 3)
+		{
+			array = bring_dir_A(".");
 			printf("%s\n", array);
 		}
 		free(array);
@@ -63,6 +70,11 @@ int main(int argc, char *argv[])
 				else if (retoptions == 2)
 				{
 					array = bring_dir_a(dirs[i]);
+					printf("%s\n", array);
+				}
+				else if (retoptions == 3)
+				{
+					array = bring_dir_A(dirs[i]);
 					printf("%s\n", array);
 				}
 				else

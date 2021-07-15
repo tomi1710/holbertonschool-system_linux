@@ -21,6 +21,10 @@ int chequear_opciones(char *options)
 			{
 				return (2);
 			}
+            if (options[i] == 'A')
+			{
+				return (3);
+            }
 		}
 	}
 	return (0);
