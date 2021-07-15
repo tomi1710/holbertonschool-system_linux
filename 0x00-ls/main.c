@@ -184,7 +184,7 @@ int dir_check(char *dir_name)
 	{
 		if (errno == 2)
 		{
-			fprintf(stderr, "./hls: cannot access '%s': No such file or directory\n"
+			fprintf(stderr, "./hls: cannot access %s: No such file or directory\n"
 			, dir_name);
 			closedir(dir);
 			return (2);
