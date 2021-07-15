@@ -18,7 +18,9 @@ int main(int argc, char *argv[])
 
 	if (dirs)
 		for (i = 0; dirs[i] != '\0'; i++)
+		{
 			dirs_len++;
+		}
 
 	if (argc == 1 && options == NULL)
 	{
@@ -56,7 +58,9 @@ int main(int argc, char *argv[])
 
 	if (dirs)
 		for (i = 0; dirs[i] != '\0'; i++)
+		{
 			free(dirs[i]);
+		}
 		free(dirs);
 	if (options)
 		free(options);
@@ -76,23 +80,24 @@ char **dir_finder(int argc, char *argv[])
 
 	for (i = 0; i < argc; i++)
 		if (argv[i][0] != '-' && argv[i][0] != '.' && argv[i][1] != '/')
-			count1++;
-	if (count1 != 0)
-		dirs = malloc(count1 + 1);
-
-	for (i = 0; i < argc; i++)
-	{
-		if (argv[i][0] != '-' && argv[i][0] != '.' && argv[i][1] != '/')
 		{
-			for (a = 1; argv[i][a] != '\0'; a++)
-				count2++;
-			dirs[contmalloc] = malloc(count2 + 1);
-			contmalloc++;
-			count2 = 1;
+			count1++;
 		}
-	}
 	if (count1 != 0)
 	{
+		dirs = malloc(count1 * 16);
+
+		for (i = 0; i < argc; i++)
+		{
+			if (argv[i][0] != '-' && argv[i][0] != '.' && argv[i][1] != '/')
+			{
+				for (a = 1; argv[i][a] != '\0'; a++)
+					count2++;
+				dirs[contmalloc] = malloc(count2 + 1);
+				contmalloc++;
+				count2 = 1;
+			}
+		}
 		for (i = 0; i < argc; i++)
 		{
 			if (argv[i][0] != '-' && argv[i][0] != '.' && argv[i][1] != '/')
