@@ -14,4 +14,6 @@ int _strlen(char *s);
 int dir_check(char *dir_name);
 void print_uno(char *array);
 int chequear_opciones(char *options);
+char **dir_finder(int argc, char *argv[]);
+
 #endif
