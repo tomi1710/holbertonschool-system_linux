@@ -1,6 +1,5 @@
 #include "holberton.h"
-#define MACRO "./hls: cannot access %s: No such file or directory\n"
-int dir_check2(char *dir_name);
+
 /**
 * main - main function
 * @argc: asda
@@ -9,7 +8,8 @@ int dir_check2(char *dir_name);
 */
 int main(int argc, char *argv[])
 {
-	int i, numero = 0, retoptions = 0, salto = 0, dirs_len = 0, bandera_numero = 0;
+	int i, numero = 0, retoptions = 0, salto = 0, dirs_len = 0;
+	int bandera_numero = 0;
 	char *array = NULL, *options = NULL, **dirs = NULL;
 
 	options = option_finder(argc, argv);
@@ -32,65 +32,83 @@ int main(int argc, char *argv[])
 	}
 	else if (dirs == NULL && retoptions != 0)
 	{
-		if (retoptions == 1)
-		{
-			array = bring_dir(".");
-			print_uno(array);
-		}
-		if (retoptions == 2)
-		{
-			array = bring_dir_a(".");
-			printf("%s\n", array);
-		}
-		if (retoptions == 3)
-		{
-			array = bring_dir_A(".");
-			printf("%s\n", array);
-		}
-		free(array);
+		handle_options(retoptions, array);
 	}
 	else
+		bandera_numero = else_main(numero, dirs, i, bandera_numero,
+		salto, dirs_len, array, retoptions, options);
+
+	return (bandera_numero);
+}
+
+/**
+* handle_options - main function
+* @retoptions: asda
+* @array: asda
+* Return: returns 0 when run correctly
+*/
+void handle_options(int retoptions, char *array)
+{
+
+	if (retoptions == 1)
 	{
-		for (i = 0; dirs[i] != '\0'; i++)
+		array = bring_dir(".");
+		print_uno(array);
+	}
+	if (retoptions == 2)
+	{
+		array = bring_dir_a(".");
+		printf("%s\n", array);
+	}
+	if (retoptions == 3)
+	{
+		array = bring_dir_A(".");
+		printf("%s\n", array);
+	}
+	free(array);
+}
+
+int else_main(int numero, char **dirs, int i, int bandera_numero,
+int salto, int dirs_len, char *array, int retoptions, char *options)
+{
+	for (i = 0; dirs[i] != '\0'; i++)
+	{
+		numero = dir_check2(dirs[i]);
+		if (numero != 0)
+			bandera_numero = numero;
+		if (numero == 0)
 		{
-			numero = dir_check2(dirs[i]);
-			if (numero != 0)
-				bandera_numero = numero; 
-			if (numero == 0)
+			if (salto != 0)
+				printf("\n");
+			if (dirs_len != 1)
+				printf("%s:\n", dirs[i]);
+			if (retoptions == 1)
 			{
-				if (salto != 0)
-					printf("\n");
-				if (dirs_len != 1)
-					printf("%s:\n", dirs[i]);
-				if (retoptions == 1)
-				{
-					array = bring_dir(dirs[i]);
-					print_uno(array);
-				}
-				else if (retoptions == 2)
-				{
-					array = bring_dir_a(dirs[i]);
-					printf("%s\n", array);
-				}
-				else if (retoptions == 3)
-				{
-					array = bring_dir_A(dirs[i]);
-					printf("%s\n", array);
-				}
-				else
-				{
-					array = bring_dir(dirs[i]);
-					printf("%s\n", array);
-				}
-				salto++;
-				free(array);
+				array = bring_dir(dirs[i]);
+				print_uno(array);
 			}
+			else if (retoptions == 2)
+			{
+				array = bring_dir_a(dirs[i]);
+				printf("%s\n", array);
+			}
+			else if (retoptions == 3)
+			{
+				array = bring_dir_A(dirs[i]);
+				printf("%s\n", array);
+			}
+			else
+			{
+				array = bring_dir(dirs[i]);
+				printf("%s\n", array);
+			}
+			salto++;
+			free(array);
 		}
 	}
 	hfree(dirs, options);
 	return (bandera_numero);
 }
-
 /**
 * dir_finder - returns an array with dirs
 * @argc: asdads
@@ -153,59 +171,4 @@ int _strlen(char *s)
 	{
 	}
 	return (i);
-}
-
-/**
-* dir_check - function to check if directory exists.
-* @dir_name: command or file name.
-*
-* Return: 1 on succes, 0 on failure.
-*/
-int dir_check(char *dir_name)
-{
-	DIR *dir = NULL;
-
-	dir = opendir(dir_name);
-
-	if (dir == NULL)
-	{
-		if (errno == 2)
-		{
-			fprintf(stderr, "./hls: cannot access %s: No such file or directory\n"
-			, dir_name);
-			closedir(dir);
-			return (2);
-		}
-		else if (errno == 13)
-		{
-			fprintf(stderr, "./hls: cannot open directory %s: Permission denied\n"
-			, dir_name);
-			closedir(dir);
-			return (2);
-		}
-	}
-	closedir(dir);
-	return (0);
-}
-int dir_check2(char *dir_name)
-{
-	DIR *dir = NULL;
-
-	dir = opendir(dir_name);
-
-	if (dir == NULL)
-	{
-		if (errno == 2)
-		{
-			closedir(dir);
-			return (2);
-		}
-		else if (errno == 13)
-		{
-			closedir(dir);
-			return (2);
-		}
-	}
-	closedir(dir);
-	return (0);
 }

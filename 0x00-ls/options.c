@@ -17,14 +17,14 @@ int chequear_opciones(char *options)
 			{
 				return (1);
 			}
-            if (options[i] == 'a')
+			if (options[i] == 'a')
 			{
 				return (2);
 			}
-            if (options[i] == 'A')
+			if (options[i] == 'A')
 			{
 				return (3);
-            }
+			}
 		}
 	}
 	return (0);

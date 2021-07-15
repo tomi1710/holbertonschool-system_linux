@@ -7,8 +7,8 @@
 */
 void hfree(char **dirs, char *options)
 {
-    int i;
-    
+	int i;
+
 	if (dirs)
 		for (i = 0; dirs[i] != '\0'; i++)
 		{
