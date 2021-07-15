@@ -9,7 +9,7 @@
 */
 int main(int argc, char *argv[])
 {
-	int i, numero = 0, retoptions = 0, salto = 0, dirs_len = 0;
+	int i, numero = 0, retoptions = 0, salto = 0, dirs_len = 0, bandera_numero = 0;
 	char *array = NULL, *options = NULL, **dirs = NULL;
 
 	options = option_finder(argc, argv);
@@ -37,27 +37,29 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-			for (i = 0; dirs[i] != '\0'; i++)
+		for (i = 0; dirs[i] != '\0'; i++)
+		{
+			numero = dir_check(dirs[i]);
+			if (numero != 0)
+				bandera_numero = numero; 
+			if (numero == 0)
 			{
-				numero = dir_check(dirs[i]);
-				if (numero == 0)
-				{
-					if (salto != 0)
-						printf("\n");
-					if (dirs_len != 1)
-						printf("%s:\n", dirs[i]);
-					array = bring_dir(dirs[i]);
-					if (retoptions == 1)
-						print_uno(array);
-					else
-						printf("%s\n", array);
-					salto++;
-					free(array);
-				}
+				if (salto != 0)
+					printf("\n");
+				if (dirs_len != 1)
+					printf("%s:\n", dirs[i]);
+				array = bring_dir(dirs[i]);
+				if (retoptions == 1)
+					print_uno(array);
+				else
+					printf("%s\n", array);
+				salto++;
+				free(array);
 			}
+		}
 	}
 	hfree(dirs, options);
-	return (numero);
+	return (bandera_numero);
 }
 
 /**
