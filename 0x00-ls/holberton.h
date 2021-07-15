@@ -13,7 +13,7 @@ char *bring_dir_a(char *path);
 char *bring_dir_A(char *path);
 char *option_finder(int argc, char *argv[]);
 int _strlen(char *s);
-int dir_check(char *dir_name);
+int dir_check(char *dir_name, char *functionn);
 void print_uno(char *array);
 int chequear_opciones(char *options);
 char **dir_finder(int argc, char *argv[]);

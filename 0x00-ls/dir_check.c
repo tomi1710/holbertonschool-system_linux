@@ -6,7 +6,7 @@
 *
 * Return: 1 on succes, 0 on failure.
 */
-int dir_check(char *dir_name)
+int dir_check(char *dir_name, char *functionn)
 {
 	DIR *dir = NULL;
 
@@ -16,15 +16,15 @@ int dir_check(char *dir_name)
 	{
 		if (errno == 2)
 		{
-			fprintf(stderr, "./hls: cannot access %s: No such file or directory\n"
-			, dir_name);
+			fprintf(stderr, "%s: cannot access %s: No such file or directory\n"
+			, functionn, dir_name);
 			closedir(dir);
 			return (2);
 		}
 		else if (errno == 13)
 		{
-			fprintf(stderr, "./hls: cannot open directory %s: Permission denied\n"
-			, dir_name);
+			fprintf(stderr, "%s: cannot open directory %s: Permission denied\n"
+			, functionn, dir_name);
 			closedir(dir);
 			return (2);
 		}

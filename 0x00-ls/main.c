@@ -124,7 +124,7 @@ char **dir_finder(int argc, char *argv[])
 		if (argv[i][0] != '-' && argv[i][1] != '/')
 		{
 			count1++;
-			dir_check(argv[i]);
+			dir_check(argv[i], argv[0]);
 		}
 	if (count1 != 0)
 	{
