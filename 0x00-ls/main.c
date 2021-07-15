@@ -39,7 +39,8 @@ int main(int argc, char *argv[])
 	{
 			for (i = 0; dirs[i] != '\0'; i++)
 			{
-				if (dir_check(dirs[i]) == 0)
+				numero = dir_check(dirs[i]);
+				if (numero == 0)
 				{
 					if (salto != 0)
 						printf("\n");
@@ -53,8 +54,6 @@ int main(int argc, char *argv[])
 					salto++;
 					free(array);
 				}
-				else
-					numero = dir_check(dirs[i]);
 			}
 	}
 	hfree(dirs, options);
