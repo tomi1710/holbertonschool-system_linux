@@ -9,12 +9,16 @@
 */
 int main(int argc, char *argv[])
 {
-	int i, numero = 0, retoptions = 0, salto = 0;
+	int i, numero = 0, retoptions = 0, salto = 0, dirs_len = 0;
 	char *array = NULL, *options = NULL, **dirs = NULL;
 
 	options = option_finder(argc, argv);
 	retoptions = chequear_opciones(options);
 	dirs = dir_finder(argc, argv);
+
+	if (dirs)
+		for (i = 0; dirs[i] != '\0'; i++)
+			dirs_len++;
 
 	if (argc == 1 && options == NULL)
 	{
@@ -31,26 +35,23 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		if (options == NULL)
-		{
 			for (i = 0; dirs[i] != '\0'; i++)
 			{
 				if (dir_check(dirs[i]) == 0)
 				{
 					if (salto != 0)
 						printf("\n");
-					printf("%s:\n", dirs[i]);
+					if (dirs_len != 1)
+						printf("%s:\n", dirs[i]);
 					array = bring_dir(dirs[i]);
-					printf("%s\n", array);
+					if (retoptions == 1)
+						print_uno(array);
+					else
+						printf("%s\n", array);
 					salto++;
 					free(array);
 				}
 			}
-		}
-		else
-		{
-
-		}
 	}
 
 	if (dirs)
@@ -62,6 +63,12 @@ int main(int argc, char *argv[])
 	return (numero);
 }
 
+/**
+* dir_finder - returns an array with dirs
+* @argc: asdads
+* @argv: asdadsad
+* Return: returns array of dirs
+*/
 char **dir_finder(int argc, char *argv[])
 {
 	int i, a, b = 0, count1 = 0, count2 = 1, contmalloc = 0;
@@ -92,87 +99,16 @@ char **dir_finder(int argc, char *argv[])
 			{
 				for (a = 0; argv[i][a] != '\0'; a++)
 				{
-					dirs[b][a] = argv[i][a];					
+					dirs[b][a] = argv[i][a];
 				}
 				dirs[b][a] = '\0';
-				b++; 
+				b++;
 			}
 		}
 		dirs[b] = '\0';
 	}
 
 	return (dirs);
-}
-
-void print_uno(char *array)
-{
-	int i;
-
-	for (i = 0; array[i] != '\0'; i++)
-	{
-		if (array[i] == ' ')
-			array[i] = '\n';
-	}
-	printf("%s\n", array);
-}
-
-int chequear_opciones(char *options)
-{
-	int i;
-
-	if (options)
-	{
-		for (i = 0; options[i] != '\0'; i++)
-		{
-			if (options[i] == '1')
-			{
-				return (1);
-			}
-		}
-	}
-	return (0);
-}
-
-/**
-* option_finder - main function
-* @argc: asda
-* @argv: asda
-* Return: returns 0 when run correctly
-*/
-char *option_finder(int argc, char *argv[])
-{
-	int i, a, b = 0, count = 0;
-	char *options = NULL;
-
-	for (i = 0; i < argc; i++)
-	{
-		if (argv[i][0] == '-')
-		{
-			for (a = 1; argv[i][a] != '\0'; a++)
-			{
-				count++;
-			}
-		}
-	}
-
-	if (count != 0)
-	{
-		options = malloc(count + 1);
-		for (i = 0; i < argc; i++)
-		{
-			if (argv[i][0] == '-')
-			{
-				for (a = 1; argv[i][a] != '\0'; a++)
-				{
-					options[b] = argv[i][a];
-					b++;
-				}
-			}
-		}
-		options[b] = '\0';
-	}
-
-	return (options);
 }
 
 /**
@@ -252,8 +188,8 @@ int dir_check(char *dir_name)
 			fprintf(stderr, "./hls: cannot access '%s': No such file or directory\n"
 			, dir_name);
 		else if (errno == 13)
-			fprintf(stderr, "Permission error");	
-		closedir(dir);	
+			fprintf(stderr, "Permission error");
+		closedir(dir);
 		return (2);
 	}
 	closedir(dir);
