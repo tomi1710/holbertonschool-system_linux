@@ -42,8 +42,13 @@ int main(int argc, char *argv[])
 			if (salto == -1)
 				salto1 = 0;
 		}
+		if (salto1 == 0)
+		{
+			printf("\n");
+			salto1++;
+		}
 		bandera_numero = else_main(numero, dirs, i, bandera_numero,
-		dirs_len, array, retoptions, options, salto1);
+		dirs_len, array, retoptions, options);
 	}
 	return (bandera_numero);
 }
@@ -76,15 +81,10 @@ void handle_options(int retoptions, char *array)
 }
 
 int else_main(int numero, char **dirs, int i, int bandera_numero,
-int dirs_len, char *array, int retoptions, char *options, int salto1)
+int dirs_len, char *array, int retoptions, char *options)
 {
 	for (i = 0; dirs[i] != '\0'; i++)
 	{
-		if (salto1 == 0)
-		{
-			printf("\n");
-			salto1++;
-		}
 		numero = dir_check2(dirs[i]);
 		if (numero == 2)
 			bandera_numero = numero;
@@ -101,7 +101,8 @@ int dirs_len, char *array, int retoptions, char *options, int salto1)
 			}
 			else if (retoptions == 2)
 			{
-				bring_and_print_a(dirs[i], array);
+				array = bring_dir_a(dirs[i]);
+				printf("%s\n", array);
 			}
 			else if (retoptions == 3)
 			{
@@ -118,13 +119,6 @@ int dirs_len, char *array, int retoptions, char *options, int salto1)
 	}
 	hfree(dirs, options);
 	return (bandera_numero);
-}
-
-void bring_and_print_a(char *dirs,
-char *array)
-{
-	array = bring_dir_a(dirs);
-	printf("%s\n", array);
 }
 
 /**
