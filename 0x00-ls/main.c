@@ -9,7 +9,7 @@
 int main(int argc, char *argv[])
 {
 	int i, numero = 0, retoptions = 0, dirs_len = 0;
-	int bandera_numero = 0;
+	int bandera_numero = 0, salto = 0, salto1 = 1;
 	char *array = NULL, *options = NULL, **dirs = NULL;
 
 	options = option_finder(argc, argv);
@@ -33,6 +33,17 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
+		for (i = 0; dirs[i] != '\0'; i++)
+		{
+			salto = dir_check2(dirs[i]);
+			if (salto == -1)
+				salto1 = 0;
+		}
+		if (salto1 == 0)
+		{
+			printf("\n");
+			salto1++;
+		}
 		bandera_numero = else_main(numero, dirs, i, bandera_numero,
 		dirs_len, array, retoptions, options);
 	}
