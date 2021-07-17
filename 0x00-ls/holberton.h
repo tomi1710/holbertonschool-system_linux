@@ -23,4 +23,6 @@ int else_main(int numero, char **dirs, int i, int bandera_numero,
 int dirs_len, char *array, int retoptions, char *options, int salto1);
 void handle_options(int retoptions, char *array);
 char *second_part_bring_dir(char *path, char *array2);
+void bring_and_print_a(char *dirs, char *array);
+
 #endif

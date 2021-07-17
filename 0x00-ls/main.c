@@ -101,8 +101,7 @@ int dirs_len, char *array, int retoptions, char *options, int salto1)
 			}
 			else if (retoptions == 2)
 			{
-				array = bring_dir_a(dirs[i]);
-				printf("%s\n", array);
+				bring_and_print_a(dirs[i], array);
 			}
 			else if (retoptions == 3)
 			{
@@ -119,6 +118,13 @@ int dirs_len, char *array, int retoptions, char *options, int salto1)
 	}
 	hfree(dirs, options);
 	return (bandera_numero);
+}
+
+void bring_and_print_a(char *dirs,
+char *array)
+{
+	array = bring_dir_a(dirs);
+	printf("%s\n", array);
 }
 
 /**
