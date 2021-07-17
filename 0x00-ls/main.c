@@ -99,7 +99,7 @@ int dirs_len, char *array, int retoptions, char *options)
 			else if (retoptions == 2)
 			{
 				array = bring_dir_a(dirs[i]);
-				printf("%s\n", array);
+				printf("\n%s\n", array);
 			}
 			else if (retoptions == 3)
 			{
