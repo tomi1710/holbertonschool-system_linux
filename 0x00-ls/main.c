@@ -87,8 +87,7 @@ int dirs_len, char *array, int retoptions, char *options)
 			bandera_numero = numero;
 		if (numero == 0)
 		{
-			if (i > 0)
-				printf("\n");
+			printf("\n");
 			if (dirs_len != 1)
 				printf("%s:\n", dirs[i]);
 			if (retoptions == 1)
