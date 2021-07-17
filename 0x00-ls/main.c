@@ -80,20 +80,18 @@ int dirs_len, char *array, int retoptions, char *options, int salto1)
 {
 	for (i = 0; dirs[i] != '\0'; i++)
 	{
+		if (salto1 == 0)
+		{
+			printf("\n");
+			salto1++;
+		}
 		numero = dir_check2(dirs[i]);
 		if (numero == 2)
 			bandera_numero = numero;
 		if (numero == 0)
 		{
-			if (salto1 == 0)
-			{
-				printf("\n");
-				salto1++;
-			}
 			if (i > 0)
-			{
 				printf("\n");
-			}
 			if (dirs_len != 1)
 				printf("%s:\n", dirs[i]);
 			if (retoptions == 1)
