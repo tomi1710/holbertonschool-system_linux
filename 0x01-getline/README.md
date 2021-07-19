@@ -36,7 +36,7 @@ gcc -Wall -Wextra -Werror -pedantic 0-main.c laps.c  -o laps
 ```
 
 ## Authors
-Made by [Facundo Diaz](https://github.com/tomi1710) for Holberton School 2021
+Made by [Tomas de Castro](https://github.com/tomi1710) for Holberton School 2021
 
 Social Networks
 -------------------
