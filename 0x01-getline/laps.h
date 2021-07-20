@@ -6,5 +6,7 @@
 #include <string.h>
 
 void race_state(int *id, size_t size);
+void _malloc(int size);
+void _realloc();
 
 #endif
