@@ -28,8 +28,6 @@ void race_state(int *id, size_t size)
 				j++;
 			}
 		}
-		else if (ya_esta(id, size) == 0)
-			sum_lap(id, size);
 		else
 		{
 			sum_lap(id, size);
@@ -153,24 +151,4 @@ void _free(void)
 		free(autos[i]);
 	}
 	free(autos);
-}
-
-int ya_esta(int *id, int size)
-{
-	int i, esta = 0;
-	unsigned int j;
-
-	for (i = 0; i < size; i++)
-	{
-		for (j = 0; j < size_autos; j++)
-		{
-			if (id[i] == autos[j][0])
-			{
-				esta++;
-			}
-		}
-	}
-	if (esta == size)
-		return (0);
-	return (1);
 }
