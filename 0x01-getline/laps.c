@@ -92,7 +92,10 @@ void _realloc(int *id, size_t size)
 	start = size_autos;
 	save = autos[0][0];
 	for (; start < (size_autos + dif_size); start++)
-		autos[start] = malloc(16);
+	{
+		autos[start] = (int *)malloc(sizeof(int) * 2);
+		autos[start][1] = 0;
+	}
 	autos[0][0] = save;
 	for (i = 0; i < (size); i++)
 	{
@@ -145,8 +148,10 @@ void _free(void)
 {
 	unsigned int i;
 
-	for (i = 0; i <= size_autos; i++)
+	for (i = 0; i < size_autos; i++)
+	{
 		free(autos[i]);
+	}
 	free(autos);
 }
 
