@@ -48,7 +48,9 @@ void race_state(int *id, size_t size)
 		}
 		printf("Race state:\n");
 		for (i = 0; i < size_autos; i++)
+		{
 			printf("Car %i [%i laps]\n", autos[i][0], autos[i][1]);
+		}
 	}
 }
 
@@ -84,19 +86,18 @@ void _realloc(int *id, size_t size)
 
 	guardar = size_autos;
 	new_size = (size_autos * 8) + (dif_size * 8);
-	printf("%i\n%i\n%i\n", size_autos, dif_size, new_size);
 	new_sizet = (size_t)new_size;
-	autos = (int **) realloc(autos, new_sizet);
+	autos = realloc(autos, new_sizet);
 
 	start = size_autos;
 	save = autos[0][0];
 	for (; start < (size_autos + dif_size); start++)
-		autos[start] = malloc(sizeof(int) * 2);
+		autos[start] = malloc(16);
 	autos[0][0] = save;
 	for (i = 0; i < (size); i++)
 	{
 		count = 0;
-		for (j = 0; j < start; j++)
+		for (j = 0; j < size_autos; j++)
 		{
 			if (id[i] == autos[j][0])
 			{
