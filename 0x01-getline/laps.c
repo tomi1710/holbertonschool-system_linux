@@ -13,7 +13,11 @@ void race_state(int *id, size_t size)
 	unsigned int i = 0, j = 0, count = 0;
 
 	if (size == 0)
-		_free();
+	{
+		for (i = 0; i < size_autos; i++)
+			free(autos[i]);
+		free(autos);
+	}
 	else
 	{
 		dif_size = 0;
@@ -22,11 +26,8 @@ void race_state(int *id, size_t size)
 			_malloc(size);
 			if (size_autos == 0)
 				size_autos = size;
-			for (i = 0; i < size_autos; i++)
-			{
+			for (i = 0; i < size_autos; i++, j++)
 				autos[i][0] = id[j];
-				j++;
-			}
 		}
 		else
 		{
@@ -45,10 +46,9 @@ void race_state(int *id, size_t size)
 			_realloc(id, size);
 		}
 		printf("Race state:\n");
+		hsort();
 		for (i = 0; i < size_autos; i++)
-		{
 			printf("Car %i [%i laps]\n", autos[i][0], autos[i][1]);
-		}
 	}
 }
 
@@ -140,15 +140,29 @@ void sum_lap(int *id, int size)
 }
 
 /**
- * _free - frees
+ * hosrt - sorts autos
  */
-void _free(void)
+void hsort(void)
 {
-	unsigned int i;
+	int a = 0, b = 0;
+	unsigned int j, count = 0;
 
-	for (i = 0; i < size_autos; i++)
+	while (count != (size_autos - 1))
 	{
-		free(autos[i]);
+		count = 0;
+		for (j = 0; j < (size_autos - 1); j++)
+		{
+			if (autos[j][0] > autos[j + 1][0])
+			{
+				a = autos[j][0];
+				b = autos[j][1];
+				autos[j][0] = autos[j + 1][0];
+				autos[j][1] = autos[j + 1][1];
+				autos[j + 1][0] = a;
+				autos[j + 1][1] = b;
+				count--;
+			}
+			count++;
+		}
 	}
-	free(autos);
 }
