@@ -140,7 +140,7 @@ void sum_lap(int *id, int size)
 }
 
 /**
- * hosrt - sorts autos
+ * hsort - sorts autos
  */
 void hsort(void)
 {
