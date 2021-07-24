@@ -53,7 +53,7 @@ void race_state(int *id, size_t size)
  */
 void _malloc(int size, int *id)
 {
-	unsigned int i = 0; 
+	unsigned int i = 0;
 	int j = 0;
 
 	autos = malloc((size) * sizeof(int *));
