@@ -22,13 +22,7 @@ void race_state(int *id, size_t size)
 	{
 		dif_size = 0;
 		if (autos == NULL)
-		{
-			_malloc(size);
-			if (size_autos == 0)
-				size_autos = size;
-			for (i = 0; i < size_autos; i++, j++)
-				autos[i][0] = id[j];
-		}
+			_malloc(size, id);
 		else
 		{
 			sum_lap(id, size);
@@ -55,20 +49,30 @@ void race_state(int *id, size_t size)
 /**
  * _malloc - mallocs when the array = NULL
  * @size: size of this array
+ * @id: array
  */
-void _malloc(int size)
+void _malloc(int size, int *id)
 {
-	int i = 0;
+	unsigned int i = 0; 
+	int j = 0;
 
 	autos = malloc((size) * sizeof(int *));
 	if (autos == NULL)
 		exit(1);
-	for (i = 0; i < size; i++)
+	for (j = 0; j < size; j++)
 	{
-		autos[i] = (int *)malloc(sizeof(int) * 2);
-		autos[i][1] = 0;
+		autos[j] = (int *)malloc(sizeof(int) * 2);
+		autos[j][1] = 0;
 		if (autos[i] == NULL)
 			exit(1);
+	}
+	if (size_autos == 0)
+		size_autos = size;
+	j = 0;
+	for (i = 0; i < size_autos; i++, j++)
+	{
+		autos[i][0] = id[j];
+		printf("Car %i joined the race\n", id[i]);
 	}
 }
 
