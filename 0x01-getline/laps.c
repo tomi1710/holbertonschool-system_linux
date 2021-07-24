@@ -108,6 +108,7 @@ void _realloc(int *id, size_t size)
 		if (count == 0)
 		{
 			autos[guardar][0] = id[i];
+			printf("Car %i joined the race\n", id[i]);
 			size_autos++;
 			guardar++;
 		}
