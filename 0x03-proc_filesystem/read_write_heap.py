@@ -16,6 +16,7 @@ def loop():
     finally:
         exit(salida)
 
+
 def modificar_file(pid, string, new):
     """ aa """
     mapa = "/proc/{:d}/maps".format(pid)
@@ -43,6 +44,7 @@ def modificar_file(pid, string, new):
         print(content + "\n[*] Found string\n[*] Replacing string")
         memoria.seek(dict["start"] + index)
         memoria.write(bytes(new + "\0", "ASCII"))
+
 
 def cambiar_formato():
     """ aa """
