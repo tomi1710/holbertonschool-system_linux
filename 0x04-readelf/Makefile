@@ -9,3 +9,6 @@ FLAGS=-Wall -Werror -Wextra -pedantic
 
 2-hreadelf: 2-main.c
 	$(CC) $(FLAGS) 2-main.c -o 2-hreadelf
+
+100-hreadelf: 100-main.c
+	$(CC) $(FLAGS) 100-main.c -o 100-hreadelf
