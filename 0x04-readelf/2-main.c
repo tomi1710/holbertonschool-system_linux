@@ -11,11 +11,11 @@
  */
 int main(int argc, char **argv, char **env)
 {
-	char *command[] = {"/usr/bin/readelf", "-W", "-S", "", NULL};
+	char *com[] = {"/usr/bin/readelf", "-W", "-l", "", NULL};
 
 	(void)argc;
-	command[3] = argv[1];
-	if (execve("/usr/bin/readelf", command, env) == -1)
+	com[3] = argv[1];
+	if (execve("/usr/bin/readelf", com, env) == -1)
 	{
 		perror("execv");
 		return (EXIT_FAILURE);
