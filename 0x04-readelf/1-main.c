@@ -15,7 +15,7 @@ int main(int argc, char **argv, char **env)
 
 	(void)argc;
 	command[3] = argv[1];
-	if (execve("/usr/bin/readelf", av, env) == -1)
+	if (execve("/usr/bin/readelf", command, env) == -1)
 	{
 		perror("execv");
 		return (EXIT_FAILURE);
