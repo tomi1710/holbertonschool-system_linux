@@ -26,3 +26,10 @@
 - The prototypes of all your functions should be included in your header file called libasm.h
 - Don’t forget to push your header files
 - All your header files should be include guarded
+
+## Authors
+Made by [Tomas de Castro](https://github.com/tomi1710) to Holberton School 2021
+
+Social Networks
+-------------------
+- [Linkedin](https://www.linkedin.com/in/tomas-de-castro-guelfi-1872a1211/)
