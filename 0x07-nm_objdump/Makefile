@@ -3,12 +3,12 @@
 CC=gcc
 FLAGS=-Wall -Werror -Wextra -pedantic
 
-hnm: 0_main.c
-	$(CC) 0_main.c -o hnm
+hnm: 0-main.c
+	$(CC) $(FLAGS) 0-main.c -o hnm
 	cp hnm tests
-	touch 0_main.c
+	touch 0-main.c
 
-hobjdump: 1_main.c
-	$(CC) 1_main.c -o hobjdump
+hobjdump: 1-main.c
+	$(CC) $(FLAGS) 1-main.c -o hobjdump
 	cp hobjdump tests
-	touch 1_main.c
+	touch 1-main.c
